@@ -4,7 +4,7 @@ This article is for who are trying to install worpress using kubernets
 
 It's only for demo purpose, here I am using minikube cluster in ubuntu ec2 machine so if you are not familiar with installing minikube, please refer this and start...
 
-Step 1 : Creating namespace
+## Step 1 : Creating namespace
 
 ```sh
 apiVersion: v1
@@ -16,7 +16,7 @@ metadata:
 
 I have used demo-wordpress as namespace of this project
 
-step 2 : Creating PersistentVolume and persistentVolumeClaim for both mysql and wordpress
+## step 2 : Creating PersistentVolume and persistentVolumeClaim for both mysql and wordpress
 
 ```
 kind: PersistentVolume
