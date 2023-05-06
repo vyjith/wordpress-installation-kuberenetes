@@ -4,7 +4,7 @@ This article is for who are trying to install worpress using kubernets
 
 It's only for demo purpose, here I am using minikube cluster in ubuntu ec2 machine so if you are not familiar with installing minikube, please refer this and start...
 
-## Step 1 : Creating namespace
+### Step 1 : Creating namespace
 
 ```sh
 apiVersion: v1
@@ -16,7 +16,7 @@ metadata:
 
 I have used demo-wordpress as namespace of this project
 
-## step 2 : Creating PersistentVolume both mysql and wordpress
+### step 2 : Creating PersistentVolume both mysql and wordpress
 
 ```
 kind: PersistentVolume
@@ -48,7 +48,7 @@ spec:
   hostPath:
     path: "/mnt/demo-wordpress-pv"
 ```
-## step 3 : Creating persistentVolumeClaim for both mysql and wordpress
+### step 3 : Creating persistentVolumeClaim for both mysql and wordpress
 
 ```
 apiVersion: v1
@@ -77,7 +77,7 @@ spec:
     requests:
       storage: 1Gi
 ```
-## step 4 : Create a secret to store the mysql password
+### step 4 : Create a secret to store the mysql password
 
 So we need to base64 a password for the root user. I used the following random password for the root user, the following is the my root password.
 
@@ -100,7 +100,7 @@ data:
   MYSQL_ROOT_PASSWORD: Zm1QdzQyMVRTZkk4MkxZR2VN
 ```
 
-## Step 4: Mysql deploy
+### Step 4: Mysql deploy
 
 ```
 apiVersion: apps/v1
@@ -162,7 +162,7 @@ data:
      CREATE DATABASE IF NOT EXISTS wordpress;
 ```
 
-## step 5: Msyql TCP service creating
+### step 5: Msyql TCP service creating
 
 ```
 apiVersion: v1
@@ -177,7 +177,7 @@ spec:
     - protocol: TCP
       port: 3306
 ```
-## step 6: Wordpress deploy
+### step 6: Wordpress deploy
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -226,7 +226,7 @@ spec:
           persistentVolumeClaim:
             claimName: demo-wordpress-pvc
 ```
-## Step 7 : Create the svc for the mysql
+### Step 7 : Create the svc for the mysql
 ```
 apiVersion: v1
 kind: Service
@@ -242,7 +242,7 @@ spec:
     app: demo-wordpress
   type: LoadBalancer
 ```
-## Step 8: If you are using the minikube then the loadbalcer type service always showing pending, check the below part...
+### Step 8: If you are using the minikube then the loadbalcer type service always showing pending, check the below part...
 
 ```
 root@ip-172-31-44-197:~/wordpress# kubectl get svc -n demo-wordpress
@@ -250,24 +250,24 @@ NAME                     TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)  
 demo-wordpress-service   LoadBalancer   10.111.208.233   <pending>     80:31356/TCP   135m
 demo-wordpress-svc       ClusterIP      10.111.99.7      <none>        3306/TCP       3h13m
 ```
-## So you need to run another command for geting the loadbalance url
+### So you need to run another command for geting the loadbalance url
 
 ```
 root@ip-172-31-44-197:~/wordpress# minikube service -n demo-wordpress demo-wordpress-service --url
 http://192.168.49.2:31356
 ```
-## So in our case I got one url http://192.168.49.2:31356 so I need to do ssh tunnel to the local machine for connecting the wordpress url from my local machine.
+### So in our case I got one url http://192.168.49.2:31356 so I need to do ssh tunnel to the local machine for connecting the wordpress url from my local machine.
 
 Ssh tunnel command is the following
 
 ```
 ssh -i [private key.pem] -L [local port]:localhost:[remote port] username@[public ip]
 ```
-## So open another terminal and run the following command.
+### So open another terminal and run the following command.
 
 ssh -i privatekey.pem -L 8080:192.168.49.2:31356 ubuntu@13.235.246.74
 
-## So you are all set, you can access the wordpress from your local machine using the following url.
+### So you are all set, you can access the wordpress from your local machine using the following url.
 
 ```
 https://localhost:8080
