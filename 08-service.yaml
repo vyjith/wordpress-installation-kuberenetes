@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-wordpress-service
+  namespace: demo-wordpress
+  labels:
+    app: demo-wordpress
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: demo-wordpress
+  type: LoadBalancer

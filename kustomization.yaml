@@ -1,0 +1,9 @@
+resources:
+  - 01-namespace.yaml
+  - 02-persistentvolumes.yaml
+  - 03-persistentvoulmeclaim.yaml
+  - 04-sercrets.yaml
+  - 05-mysql-deploy.yaml
+  - 06-mysql-service.yaml
+  - 07-wordpress-deploy.yaml
+  - 08-service.yaml
