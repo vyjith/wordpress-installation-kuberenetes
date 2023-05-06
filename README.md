@@ -273,5 +273,5 @@ ssh -i privatekey.pem -L 8080:192.168.49.2:31356 ubuntu@13.235.246.74
 https://localhost:8080
 ```
 
-![](https://i.ibb.co/RyxTmSn/image.png)
+![](https://i.ibb.co/2q7pndq/image.png)
 
