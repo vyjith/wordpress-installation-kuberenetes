@@ -84,10 +84,11 @@ So we need to base64 a password for the root user. I used the following random p
 fmPw421TSfI82LYGeM
 
 then I run this command to get the base64 version of it:
-
+```
  echo -n "fmPw421TSfI82LYGeM" | base64
  Zm1QdzQyMVRTZkk4MkxZR2VN
-
+```
+---
 ```
 apiVersion: v1
 kind: Secret
