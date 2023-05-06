@@ -6,12 +6,12 @@ It's only for demo purpose, here I am using minikube cluster in ubuntu ec2 machi
 
 Step 1 : Creating namespace
 
-```
+```sh
 apiVersion: v1
 kind: Namespace
 metadata:
   name: demo-wordpress
-
+  
 ```
 
 
