@@ -1,4 +1,4 @@
-# How Install WordPress on Kubernetes
+# How Install WordPress using Kubernetes
 This article is for who are trying to install worpress using kubernets
 ---
 
@@ -12,6 +12,7 @@ git clone https://github.com/vyjith/wordpress-installation-kuberenetes.git
 kubectl apply -k wordpress-installation-kuberenetes/
 
 ```
+The above command will do all but if you want to more dig on this, then following the below steps...
 
 ### Step 1 : Creating namespace
 
